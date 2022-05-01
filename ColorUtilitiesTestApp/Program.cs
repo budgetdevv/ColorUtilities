@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Running;
 using Color.Encoding;
 
 namespace ColorUtilitiesTestApp // Note: actual namespace depends on the project name.
@@ -40,24 +41,18 @@ namespace ColorUtilitiesTestApp // Note: actual namespace depends on the project
     [DisassemblyDiagnoser(exportCombinedDisassemblyReport: true)]
     public class Bench
     {
-        private const string Hex = "123456";
+        private const string Hex = "123456FF";
 
         [Benchmark]
-        public int HexToIntNaive()
+        public int Naive()
         {
             return int.Parse(Hex.AsSpan(), NumberStyles.HexNumber);
         }
         
         [Benchmark]
-        public int HexToIntTrumpMcD()
+        public int TrumpMcD_AVX2()
         {
-            return ColorEncoding.RRGGBBHexToARGB32_Scalar(Hex.AsSpan());
-        }
-        
-        [Benchmark]
-        public int HexToIntTrumpMcD_AVX2()
-        {
-            return ColorEncoding.RRGGBBHexToARGB32_AVX2(Hex.AsSpan());
+            return ColorEncoding.RRGGBBAAHexToARGB32_AVX2(Hex.AsSpan());
         }
     }
     

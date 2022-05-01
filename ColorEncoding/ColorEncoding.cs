@@ -74,11 +74,7 @@ namespace Color.Encoding
         {
             ref var FirstChar = ref MemoryMarshal.GetReference(HexSpan);
 
-            #if NET7_0_OR_GREATER
-            var Sm0lVec = Vector128.LoadUnsafe(ref Unsafe.Subtract(ref Unsafe.As<char, short>(ref FirstChar), 2));
-            #else
             var Sm0lVec = Unsafe.ReadUnaligned<Vector128<short>>(ref Unsafe.As<char, byte>(ref Unsafe.Subtract(ref FirstChar, 2)));
-            #endif
 
             var IsLowerCaseVec = Avx2.CompareGreaterThan(Sm0lVec, Vector128.Create((short) 'F'));
 
@@ -96,21 +92,7 @@ namespace Color.Encoding
 
             Vec = Avx2.ShiftLeftLogicalVariable(Vec, Vector256.Create((uint) 23, 23, 20, 16, 12, 8, 4, 0));
             
-            #if NET7_0_OR_GREATER
-            return Vector256.Sum(Vec);
-            #else
-            var Upper = Vec.GetUpper();
-
-            var Lower = Vec.GetLower();
-
-            Upper = Avx2.Add(Upper, Lower);
-            
-            Upper = Avx2.HorizontalAdd(Upper, Upper);
-            
-            Upper = Avx2.HorizontalAdd(Upper, Upper);
-
-            return Upper.GetElement(0);
-            #endif
+            return Vec.HorizontalAddInt();
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -153,11 +135,7 @@ namespace Color.Encoding
         {
             ref var FirstChar = ref MemoryMarshal.GetReference(HexSpan);
 
-            #if NET7_0_OR_GREATER
-            var Sm0lVec = Vector128.LoadUnsafe(ref Unsafe.As<char, short>(ref FirstChar));
-            #else
             var Sm0lVec = Unsafe.ReadUnaligned<Vector128<short>>(ref Unsafe.As<char, byte>(ref FirstChar));
-            #endif
             
             var IsLowerCaseVec = Avx2.CompareGreaterThan(Sm0lVec, Vector128.Create((short) 'F'));
 
@@ -173,21 +151,7 @@ namespace Color.Encoding
 
             Vec = Avx2.ShiftLeftLogicalVariable(Vec, Vector256.Create((uint) 20, 16, 12, 8, 4, 0, 28, 24));
 
-            #if NET7_0_OR_GREATER
-            return Vector256.Sum(Vec);
-            #else
-            var Upper = Vec.GetUpper();
-
-            var Lower = Vec.GetLower();
-
-            Upper = Avx2.Add(Upper, Lower);
-            
-            Upper = Avx2.HorizontalAdd(Upper, Upper);
-            
-            Upper = Avx2.HorizontalAdd(Upper, Upper);
-
-            return Upper.GetElement(0);
-            #endif
+            return Vec.HorizontalAddInt();
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
