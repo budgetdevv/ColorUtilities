@@ -26,7 +26,7 @@ namespace ColorUtilitiesTestApp // Note: actual namespace depends on the project
 
             try
             {
-                BenchmarkRunner.Run<Bench>();
+                BenchmarkRunner.Run<VectorSum>();
             }
 
             finally
