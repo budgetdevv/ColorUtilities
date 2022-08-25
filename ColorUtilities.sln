@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorEncoding", "ColorEncod
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{9E4C97D2-3AF2-453B-93D6-18BCBC393C34}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InASM", "..\InASM\InASM\InASM.csproj", "{B8471BB6-3E14-4FB1-B0A7-832E635F665D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{9E4C97D2-3AF2-453B-93D6-18BCBC393C34}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E4C97D2-3AF2-453B-93D6-18BCBC393C34}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E4C97D2-3AF2-453B-93D6-18BCBC393C34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8471BB6-3E14-4FB1-B0A7-832E635F665D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8471BB6-3E14-4FB1-B0A7-832E635F665D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8471BB6-3E14-4FB1-B0A7-832E635F665D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8471BB6-3E14-4FB1-B0A7-832E635F665D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

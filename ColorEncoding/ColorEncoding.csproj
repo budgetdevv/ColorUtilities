@@ -7,4 +7,8 @@
     <RootNamespace>Color.Encoding</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\InASM\InASM\InASM.csproj" />
+  </ItemGroup>
+
 </Project>

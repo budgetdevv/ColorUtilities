@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.Intrinsics;
 using System.Runtime.Intrinsics.X86;
+using Inside.ASM.Core;
 
 namespace Color.Encoding
 {
@@ -56,6 +57,7 @@ namespace Color.Encoding
             }
         }
 
+        [JITMethod]
         public static int RRGGBBHexToARGB32(ReadOnlySpan<char> HexSpan)
         {
             if (Avx2.IsSupported)
